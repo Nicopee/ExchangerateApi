@@ -4,16 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Country;
 
-class Country extends Model
+class ExchangeRates extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'short_code'
+        'rate',
     ];
-    protected $hidden = [
-        'description',
-    ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
 }
